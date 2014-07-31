@@ -13,9 +13,33 @@ import java.util.Arrays;
 
 
 public class RatkaisijaAlgoritmi {
+    
+//    private static String[] esim1 = new String[]{
+//       "??53?????",
+//     "8??????2?",
+//     "?7??1?5??",
+//     "4????53??",
+//     "?1??7???6",
+//     "??32???8?",
+//     "?6?5????9",
+//     "??4????3?",
+//     "?????97??"};
+    private static int[][] staattinenSudoku;
 
+    /**
+     *
+     * @param sudoku
+     */
+    public RatkaisijaAlgoritmi(int[][] sudoku) {
+        staattinenSudoku = sudoku;
+    }
 
-
+    
+    public static int[][] vastaus() {
+        ratkaise(staattinenSudoku);
+        return staattinenSudoku;
+    }
+    
     public static void ratkaise(int[][] sudoku) {
         // Toteuta minut
         try{
@@ -93,16 +117,7 @@ public class RatkaisijaAlgoritmi {
     
     
 
-//     private static String[] esim1 = new String[]{
-//            "??53?????",
-//          "8??????2?",
-//          "?7??1?5??",
-//          "4????53??",
-//          "?1??7???6",
-//          "??32???8?",
-//          "?6?5????9",
-//          "??4????3?",
-//          "?????97??"};
+
 //
 //    public static void main(String[] args) {
 //        int[][] sudoku = new int[9][9];
@@ -121,17 +136,17 @@ public class RatkaisijaAlgoritmi {
 //
 //    }
 //
-//    public static int[][] toIntArray(String[] rs) {
-//        int[][] s = new int[9][9];
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                if (rs[i].charAt(j) != '?') {
-//                    s[i][j] = Character.digit(rs[i].charAt(j), 10);
-//                }
-//            }
-//        }
-//        return s;
-//    }
+    public static int[][] toIntArray(String[] rs) {
+        int[][] s = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (rs[i].charAt(j) != '?') {
+                    s[i][j] = Character.digit(rs[i].charAt(j), 10);
+                }
+            }
+        }
+        return s;
+    }
     
     
 }
