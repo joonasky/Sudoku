@@ -41,10 +41,10 @@ public class KayttoLiittymaTest {
     @Test
     public void hello() {}
     
-    @Test
-    public void toimiikoStart() {
-        KayttoLiittyma k = new KayttoLiittyma();
-        k.start();
-        
-    }
+//    @Test
+//    public void toimiikoStart() {
+//        KayttoLiittyma k = new KayttoLiittyma();
+//        assertEquals("Uusi peli 1, ratkaise sudoku 2", k.start());
+//        
+//    }
 }

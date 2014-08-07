@@ -11,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 /**
  *
  * @author joonaskylliainen
@@ -53,6 +54,18 @@ public class RatkaisijaAlgoritmiTest {
      "?6?5????9",
      "??4????3?",
      "?????97??"};
+        
+        String[] esim2 = new String[]{
+       "142653897",
+     "835947621",
+     "679812543",
+     "496185372",
+     "218374956",
+     "753296184",
+     "367528419",
+     "984761235",
+     "521439768"};
+        
         int[][] s = new int[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -61,10 +74,21 @@ public class RatkaisijaAlgoritmiTest {
                 }
             }
         }
+        
+        int[][] su = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (esim2[i].charAt(j) != '?') {
+                    su[i][j] = Character.digit(esim1[i].charAt(j), 10);
+                }
+            }
+        }
+        
         int [][] sudoku = s;
+        int [][] sudoku2 = su;
         RatkaisijaAlgoritmi ratkaisija = new RatkaisijaAlgoritmi();
         sudoku = ratkaisija.vastaus(sudoku);
         
-        assertEquals("[[I@35960f05", sudoku.toString());
+        assertEquals(true, Arrays.deepEquals(s, su));
     }
 }
