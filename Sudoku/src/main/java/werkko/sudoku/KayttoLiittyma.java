@@ -15,7 +15,7 @@ public class KayttoLiittyma {
     public void KayttoLiittyma() {
         
     }
-    public static void aloita() {
+    public static void start() {
         System.out.println("Uusi peli 1, ratkaise sudoku 2");
         Scanner lukija = new Scanner(System.in);
         int luku = lukija.nextInt();
@@ -23,12 +23,12 @@ public class KayttoLiittyma {
             System.out.println("ei valmis vielä");
         }
         else if (luku == 2) {
-            aloitaRatkaisu();
+            solution();
         }
                 
         
     }
-    public static void aloitaRatkaisu() {
+    public static void solution() {
         System.out.println("Anna sudoku");
         Scanner lukija = new Scanner(System.in);
         int[][] sudoku = new int[9][9];
@@ -37,8 +37,14 @@ public class KayttoLiittyma {
                 sudoku[i][j] = lukija.nextInt();
             }
         }
-        RatkaisijaAlgoritmi ratkaisija = new RatkaisijaAlgoritmi(sudoku);
-        sudoku = ratkaisija.vastaus();
+        RatkaisijaAlgoritmi ratkaisija = new RatkaisijaAlgoritmi();
+        sudoku = ratkaisija.vastaus(sudoku);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(sudoku[i][j]);
+            }
+            System.out.println("");
+        }
     }
     
     

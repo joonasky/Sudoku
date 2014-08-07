@@ -24,23 +24,24 @@ public class RatkaisijaAlgoritmi {
 //     "?6?5????9",
 //     "??4????3?",
 //     "?????97??"};
-    private static int[][] staattinenSudoku;
+//    private static int[][] staattinenSudoku;
+    
 
     /**
      *
      * @param sudoku
      */
-    public RatkaisijaAlgoritmi(int[][] sudoku) {
-        staattinenSudoku = sudoku;
+    public RatkaisijaAlgoritmi() {
+        
     }
 
     
-    public static int[][] vastaus() {
-        ratkaise(staattinenSudoku);
-        return staattinenSudoku;
+    public static int[][] vastaus(int[][] sudoku) {
+        solve(sudoku);
+        return sudoku;
     }
     
-    public static void ratkaise(int[][] sudoku) {
+    public static void solve(int[][] sudoku) {
         // Toteuta minut
         try{
         putNumber(sudoku,0,0);
