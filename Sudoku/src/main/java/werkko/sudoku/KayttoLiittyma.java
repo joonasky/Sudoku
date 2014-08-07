@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 public class KayttoLiittyma {
     
-    public void KayttoLiittyma() {
-        
-    }
-    public static void start() {
+//    public KayttoLiittyma() {
+//        
+//    }
+    public void start() {
         System.out.println("Uusi peli 1, ratkaise sudoku 2");
         Scanner lukija = new Scanner(System.in);
         int luku = lukija.nextInt();
