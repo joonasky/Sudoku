@@ -20,7 +20,7 @@ public class KayttoLiittyma {
         Scanner lukija = new Scanner(System.in);
         int luku = lukija.nextInt();
         if (luku == 1) {
-            System.out.println("ei valmis vielä");
+            game();
         }
         else if (luku == 2) {
             solution();
@@ -37,14 +37,52 @@ public class KayttoLiittyma {
                 sudoku[i][j] = lukija.nextInt();
             }
         }
-        RatkaisijaAlgoritmi ratkaisija = new RatkaisijaAlgoritmi();
-        sudoku = ratkaisija.vastaus(sudoku);
+        BoardSolver ratkaisija = new BoardSolver();
+        sudoku = ratkaisija.answer(sudoku);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 System.out.print(sudoku[i][j]);
             }
             System.out.println("");
         }
+    }
+    public static void game() {
+        Board b = new Board();
+        b.generateBoard();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(b.getCell(i, j));              
+            }
+            System.out.println("");
+        }
+        b.generateBoard();
+        System.out.println("--------");
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(b.getCell(i, j));              
+            }
+            System.out.println("");
+        }
+        
+        b.generateBoard();
+        System.out.println("--------");
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(b.getCell(i, j));              
+            }
+            System.out.println("");
+        }
+//        System.out.println("");
+//        System.out.println("");
+//        b.solve();
+//        int[][] s = b.getAnswer();
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                System.out.print(s[i][j]);              
+//            }
+//            System.out.println("");
+//        }
+        
     }
     
     

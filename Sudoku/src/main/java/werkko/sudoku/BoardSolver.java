@@ -5,54 +5,44 @@
 package werkko.sudoku;
 
 /**
- *
+ * Luokka on luotu sudokun ratkaisemista varten. Algoritmi ratkaisee sudokun Brute force-menetelmällä.
+ * 
  * @author joonaskylliainen
  */
-import java.util.Scanner;
-import java.util.Arrays;
-
-
-public class RatkaisijaAlgoritmi {
+public class BoardSolver {
     
-//    private static String[] esim1 = new String[]{
-//       "??53?????",
-//     "8??????2?",
-//     "?7??1?5??",
-//     "4????53??",
-//     "?1??7???6",
-//     "??32???8?",
-//     "?6?5????9",
-//     "??4????3?",
-//     "?????97??"};
-//    private static int[][] staattinenSudoku;
-    
-
     /**
-     *
-     * @param sudoku
+     * palauttaa ratkaistun sudokun, kutsumalla solve-metodia.
+     * @param sudoku ratkaistu sudoku
      */
-    public RatkaisijaAlgoritmi() {
-        
-    }
-
-    
-    public static int[][] vastaus(int[][] sudoku) {
+    public int[][] answer(int[][] sudoku) {
         solve(sudoku);
         return sudoku;
     }
     
+    /**
+     * kutsuu putNumber-metodia sudokun ratkaisemista varten.
+     * @param sudoku ratkaistava sudoku
+     */
     public static void solve(int[][] sudoku) {
-        // Toteuta minut
+        
         try{
         putNumber(sudoku,0,0);
         }catch( Exception e){}
         
         
     }
+    /**
+     * Kokeilee sopiiko numero soluun. Jos numero sopii, kutsuu metodi itseään rekursiivisesti ja
+     * kokeilee seuraavaan soluun numeroita. 
+     * 
+     * @param sudoku sudoku, jota ratkaistaan
+     * @param row rivi johon kokeillaan numeroa
+     * @param column sarake johon kokeillaan numeroa
+     * @throws Exception
+     */
     public static void putNumber(int[][] sudoku, int row, int column) throws Exception{
-//        if (check(sudoku, row, column) == false) {
-//            return;
-//        }
+
         if (row > 8) {
             throw new Exception("sienikastiketta!");
         }
@@ -79,6 +69,15 @@ public class RatkaisijaAlgoritmi {
             sudoku[row][column] = 0 ;
         }    
     }
+    /**
+     * Tarkistaa sopiiko annettu numero annetuun soluun
+     * 
+     * @param sudoku sudoku jota tarkistetaan
+     * @param row rivi johon numeroa ollaan laittamassa
+     * @param column sarake johon numeroa ollaan laittamassa
+     * @param number numero jota kokeillaan
+     * @return true jos sopii, false jos ei
+     */
     public static boolean check(int[][] sudoku, int row, int column, int number) {
         if (checkRow(sudoku, row, number) == true && checkColumn(sudoku, column, number) == true && checkBox(sudoku,row,column,number) == true) {
             return true;
@@ -86,6 +85,14 @@ public class RatkaisijaAlgoritmi {
         return false;
     }
 
+    /**
+     * Kokeilee sopiiko numeron annettuun riviin
+     * 
+     * @param sudoku sudoku jota tarkistetaan
+     * @param row rivi johon numeroa ollaan laittamassa
+     * @param number numero jota kokeillaan
+     * @return true jos sopii, false jos ei
+     */
     public static boolean checkRow(int[][] sudoku, int row, int number) {
         for (int i = 0; i < 9; i++) {
             if (sudoku[row][i] == number) {
@@ -94,6 +101,14 @@ public class RatkaisijaAlgoritmi {
         }
         return true;
     }
+    /**
+     * Kokeilee sopiiko numeron annettuun sarakkeeseen
+     * 
+     * @param sudoku sudoku jota tarkistetaan
+     * @param column sarake johon numeroa ollaan laittamassa
+     * @param number numero jota kokeillaan
+     * @return true jos sopii, false jos ei
+     */
     public static boolean checkColumn(int[][] sudoku, int column, int number) {
         for (int i = 0; i < 9; i++) {
             if (sudoku[i][column] == number) {
@@ -102,6 +117,15 @@ public class RatkaisijaAlgoritmi {
         }
         return true;
     }
+    /**
+     * Kokeilee sopiiko numeron annettuun laatikkoon
+     * 
+     * @param sudoku sudoku jota ollaan ratkaisemassa
+     * @param row rivi jota kokeillaan
+     * @param column sarake jota kokeillaan
+     * @param number numero jota kokeillaan
+     * @return true jos sopii false jos ei
+     */
     public static boolean checkBox(int[][] sudoku, int row, int column, int number) {
         row = (row / 3) * 3 ;
         column = (column / 3) * 3 ;
@@ -115,39 +139,4 @@ public class RatkaisijaAlgoritmi {
         }
       return true ;
     }
-    
-    
-
-
-//
-//    public static void main(String[] args) {
-//        int[][] sudoku = new int[9][9];
-//       
-//        sudoku = toIntArray(esim1);
-//
-//        ratkaise(sudoku);
-//
-//        System.out.println("Ratkaisu:");
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                System.out.print(sudoku[i][j]);
-//            }
-//            System.out.println();
-//        }
-//
-//    }
-//
-    public static int[][] toIntArray(String[] rs) {
-        int[][] s = new int[9][9];
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (rs[i].charAt(j) != '?') {
-                    s[i][j] = Character.digit(rs[i].charAt(j), 10);
-                }
-            }
-        }
-        return s;
-    }
-    
-    
 }

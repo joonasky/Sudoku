@@ -8,8 +8,6 @@ package werkko.sudoku;
  *
  * @author joonaskylliainen
  */
-public class Peli {
-    
-    
+public class GraphicBoard extends Board {
     
 }
