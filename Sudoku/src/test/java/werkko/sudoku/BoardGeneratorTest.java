@@ -5,6 +5,8 @@
 package werkko.sudoku;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,6 +21,47 @@ import static org.junit.Assert.*;
 public class BoardGeneratorTest {
     
     BoardGenerator g;
+    
+    public static void tarkasta(int[][] s) {
+        
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
+                assertTrue("Ratkaisusi sisälsi lukuja 0.", s[i][j]!=0);
+            }
+        }
+
+        HashSet oikea = new HashSet();
+        Collections.addAll(oikea,1,2,3,4,5,6,7,8,9);
+
+        HashSet tark = new HashSet();
+        for (int rivi = 0; rivi<9; rivi++) {
+            tark.clear();
+            for (int i = 0; i<9; i++) {
+                tark.add(s[rivi][i]);
+            }
+            assertEquals("Rivi "+(rivi+1)+" ei ollut validi.",oikea,tark);
+        }
+
+        for (int sarake = 0; sarake<9; sarake++) {
+            tark.clear();
+            for (int i = 0; i<9; i++) {
+                tark.add(s[i][sarake]);
+            }
+            assertEquals("Sarake "+(sarake+1)+" ei ollut validi.",oikea,tark);
+        }
+
+        for (int x=0; x<3; x++) {
+            for (int y=0; y<3; y++) {
+                tark.clear();
+                for (int i=0; i<3; i++) {
+                    for (int j=0; j<3; j++) {
+                        tark.add(s[3*x+i][3*y+j]);
+                    }
+                }
+                assertEquals("Neliö "+(x+1)+","+(y+1)+" ei ollut validi.",oikea,tark);
+            }
+        }
+    }
     
     public BoardGeneratorTest() {
     }
@@ -82,6 +125,24 @@ public class BoardGeneratorTest {
         int [][] s3 = g.generateFromFileRandom();
         int[][] s4 = g.generateFromFileRandom();
         int[][] s5 = g.generateFromFileRandom();
-        assertFalse("mikään sudoku viidestä ei ole tiedostonensimmäinen", Arrays.deepEquals(s, s2) || Arrays.deepEquals(s, s3) || Arrays.deepEquals(s, s4) ||  Arrays.deepEquals(s, s5) );
+        assertFalse("mikään sudoku viidestä ei ole tiedoston ensimmäinen", Arrays.deepEquals(s, s2) || Arrays.deepEquals(s, s3) || Arrays.deepEquals(s, s4) ||  Arrays.deepEquals(s, s5) );
+    }
+    public void AreRandomSudokusSolvable() {
+        int[][] s1 = g.generateFromFileRandom();
+        int [][] s2 = g.generateFromFileRandom();
+        int [][] s3 = g.generateFromFileRandom();
+        int[][] s4 = g.generateFromFileRandom();
+        int[][] s5 = g.generateFromFileRandom();
+        BoardSolver solver = new BoardSolver();
+        s1 = solver.answer(s1);
+        s2 = solver.answer(s2);
+        s3 = solver.answer(s3);
+        s4 = solver.answer(s4);
+        s5 = solver.answer(s5);
+        tarkasta(s1);
+        tarkasta(s2);
+        tarkasta(s3);
+        tarkasta(s4);
+        tarkasta(s5);
     }
 }

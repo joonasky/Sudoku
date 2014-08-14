@@ -68,11 +68,11 @@ public class BoardTest {
     //
     // @Test
     // public void hello() {}
-    @Test
-    public void toimiikoGenerateBoard() {
-        board.generateBoard();
-        assertEquals(true, Arrays.deepEquals(board.getBoard(), board2.getBoard()));
-    }
+//    @Test
+//    public void toimiikoGenerateBoard() {
+//        board.generateBoard();
+//        assertEquals(true, Arrays.deepEquals(board.getBoard(), board2.getBoard()));
+//    }
     @Test 
     public void toimiikoSolve() {
         board2.solve();
