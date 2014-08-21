@@ -14,12 +14,14 @@ public class Board {
 
     private int[][] board;
     private int[][] answer;
+    private int[][] empty;
     
     /**
      *luo tyhjän pelilaudan
      */
     public Board() {
         board = new int[9][9];
+        empty = new int[9][9];
     }
     
     /**
@@ -28,6 +30,7 @@ public class Board {
      */
     public Board(int[][] sudoku) {
         board = sudoku;
+        empty = new int[9][9];
     }
     
     /**
@@ -56,6 +59,10 @@ public class Board {
     public int[][] getAnswer() {
         return answer;
     }
+    public void setAnswer() {
+        solve();
+        board = answer;
+    }
     
     /**
      * generoi uuden sudokupeliasetelman
@@ -63,6 +70,7 @@ public class Board {
     public void generateBoard() {
         BoardGenerator g = new BoardGenerator();
         board = g.generateFromFileRandom();
+        answer = board;
     }
     
     /**
@@ -70,7 +78,8 @@ public class Board {
      */
     public void solve() {
         BoardSolver ratkaisija = new BoardSolver();
-        answer = ratkaisija.answer(board);
+        answer = ratkaisija.answer(answer);
+        //board = answer;
     }
     
     /**
@@ -80,6 +89,7 @@ public class Board {
      * @return vihje
      */
     public int hint(int row, int column) {
+        solve();
         return answer[row][column];
     }
     
