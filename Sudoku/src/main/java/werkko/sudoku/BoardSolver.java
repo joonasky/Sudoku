@@ -5,7 +5,7 @@
 package werkko.sudoku;
 
 /**
- * Luokka on luotu sudokun ratkaisemista varten. Algoritmi ratkaisee sudokun Brute force-menetelmällä.
+ * Luokka sudokun ratkaisemista varten. Algoritmi ratkaisee sudokun Brute force-menetelmällä.
  * 
  * @author joonaskylliainen
  */

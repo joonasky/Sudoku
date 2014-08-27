@@ -10,8 +10,12 @@ import java.util.Arrays;
  * @author joonaskylliainen
  */
 public class Board {
-    final int EMPTY = 0;             
-
+    
+    private int activeFieldx;
+    private int activeFieldy;
+    
+    private boolean isActive;
+    
     private int[][] board;
     private int[][] answer;
     private int[][] empty;
@@ -63,6 +67,29 @@ public class Board {
         solve();
         board = answer;
     }
+    public int getActiveFieldx() {
+        return activeFieldx;
+    }
+
+    public int getActiveFieldy() {
+        return activeFieldy;
+    }
+
+    public boolean isThereAnActiveField() {
+        return isActive;
+    }
+    
+    public void activate(int x, int y) {
+        this.activeFieldx = x;
+        this.activeFieldy = y;
+        this.isActive = true;
+    }
+    
+    public void deActivate() {
+        this.isActive = false;
+    }
+    
+    
     
     /**
      * generoi uuden sudokupeliasetelman
@@ -71,6 +98,12 @@ public class Board {
         BoardGenerator g = new BoardGenerator();
         board = g.generateFromFileRandom();
         answer = board;
+//        for(int x = 0; x<9;x++) {
+//            for(int y = 0;y<9;y++) {
+//                answer[x][y] = board[x][y]; 
+//            }
+//        }
+//        solve();
     }
     
     /**
@@ -80,7 +113,7 @@ public class Board {
         BoardSolver ratkaisija = new BoardSolver();
         answer = ratkaisija.answer(answer);
         //board = answer;
-    }
+    }    
     
     /**
      * antaa vihjeen
@@ -89,7 +122,6 @@ public class Board {
      * @return vihje
      */
     public int hint(int row, int column) {
-        solve();
         return answer[row][column];
     }
     

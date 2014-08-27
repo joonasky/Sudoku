@@ -23,9 +23,6 @@ public class Gui implements Runnable {
     private JFrame frame;
     private Board b;
 
-//    public Gui() {
-//        
-//    }
     public Gui(Board b) {
         this.b = b;
     }
@@ -33,31 +30,30 @@ public class Gui implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("SUDOKU");
-        frame.setPreferredSize(new Dimension(600, 600));
+        frame.setPreferredSize(new Dimension(560, 600));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         createComponents(frame.getContentPane());
-
+        
         frame.pack();
         frame.setVisible(true);
     }
 
     private void createComponents(Container container) {
-        //Board b = new Board();
-        //GridBagLayout layout = new GridBagLayout();
-
 
         SudokuComponent sudoku = new SudokuComponent(b);
 
-        HiirenKuuntelija hiiri = new HiirenKuuntelija(sudoku);
-        KeyboardListener nappis = new KeyboardListener(sudoku);
+        MouseEar hiiri = new MouseEar(b,sudoku);
 
         sudoku.addMouseListener(hiiri);
         sudoku.addMouseMotionListener(hiiri);
 
         container.add(sudoku);
         container.add(createButtons(b, sudoku), BorderLayout.SOUTH);
-
+        
+        KeyboardEar nappis = new KeyboardEar(b,sudoku);
+        frame.addKeyListener(nappis);
+        
     }
 
     private JPanel createButtons(Board b, SudokuComponent sc) {
@@ -67,18 +63,23 @@ public class Gui implements Runnable {
         JButton vihje = new JButton("Vihje");
         JButton ratkaise = new JButton("Ratkaise");
 
-        ButtonListener kuuntelija = new ButtonListener(b, 0, sc);
-        uusi.addActionListener(kuuntelija);
+        uusi.addActionListener(new ButtonListener(b, 0, sc));
         vihje.addActionListener(new ButtonListener(b, 1, sc));
         ratkaise.addActionListener(new ButtonListener(b, 2, sc));
+        
+        uusi.setFocusable(false);
+        vihje.setFocusable(false);
+        ratkaise.setFocusable(false);
 
         panel.add(uusi);
         panel.add(vihje);
         panel.add(ratkaise);
 
-
-
         return panel;
+    }
+    
+     public JFrame getFrame() {
+        return frame;
     }
 }
 

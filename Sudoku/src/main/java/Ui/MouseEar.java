@@ -9,22 +9,27 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import werkko.sudoku.Board;
 
 /**
  *
  * @author joonaskylliainen
  */
-public class HiirenKuuntelija implements MouseListener, MouseMotionListener{
+public class MouseEar implements MouseListener, MouseMotionListener{
     
     private Component component;
+    private Board b;
     
-    public HiirenKuuntelija(Component component) {
+    public MouseEar(Board b, Component component) {
         this.component = component;
+        this.b = b;
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        Point point = me.getPoint();
+        //System.out.println(me.getX() + " " + me.getY());
+        b.activate((int)Math.ceil(me.getX() / 60), (int)Math.ceil(me.getY()) / 60);
+        component.repaint();
     }
 
     @Override

@@ -8,10 +8,8 @@ package werkko.sudoku;
  *
  * @author joonaskylliainen
  */
-import java.util.Random;
 import java.io.File;
-import java.io.FileReader;
-import java.io.BufferedReader;
+import java.util.Random;
 import java.util.Scanner;
 
 /**

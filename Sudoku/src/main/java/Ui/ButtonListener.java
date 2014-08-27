@@ -44,12 +44,12 @@ public class ButtonListener implements ActionListener{
               break;
 
             case 1:
-                board.solve();
+                board.setCell(board.hint(r1, r2), r1, r2);
                 sc.repaint();
               break;
 
             case 2:
-                board.setCell(board.hint(r1, r2), r1, r2);
+                board.solve();
                 sc.repaint();
               break;
          }       
