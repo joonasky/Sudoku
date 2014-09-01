@@ -7,6 +7,7 @@ package Ui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import werkko.sudoku.Board;
 
 /**
@@ -17,16 +18,16 @@ public class ButtonListener implements ActionListener{
     
     private Board board;
     private int num;
-    private int r1;
-    private int r2;
+    private Random r1;
+    private Random r2;
     private Component sc;
     
     public ButtonListener(Board b, int num, Component sc) {
         this.board = b;
         this.num = num;
         this.sc = sc;
-        r1 = (int) Math.random()*10;
-        r2 = (int) Math.random()*10;
+        r1 = new Random();
+        r2 = new Random();
     }
 
     /**
@@ -44,12 +45,19 @@ public class ButtonListener implements ActionListener{
               break;
 
             case 1:
-                board.setCell(board.hint(r1, r2), r1, r2);
+                int x = r1.nextInt(9);
+                int y = r2.nextInt(9);
+                board.setCell(board.hint(x, y), x, y);
                 sc.repaint();
               break;
 
             case 2:
-                board.solve();
+                board.setAnswer();
+                sc.repaint();
+              break;
+                
+            case 3:
+                board.clear();
                 sc.repaint();
               break;
          }       

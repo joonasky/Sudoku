@@ -15,6 +15,7 @@ public class Board {
     private int activeFieldy;
     
     private boolean isActive;
+    private boolean gameover;
     
     private int[][] board;
     private int[][] answer;
@@ -25,6 +26,7 @@ public class Board {
      */
     public Board() {
         board = new int[9][9];
+        answer = new int[9][9];
         empty = new int[9][9];
     }
     
@@ -88,22 +90,18 @@ public class Board {
     public void deActivate() {
         this.isActive = false;
     }
-    
-    
-    
+
     /**
      * generoi uuden sudokupeliasetelman
      */
     public void generateBoard() {
         BoardGenerator g = new BoardGenerator();
         board = g.generateFromFileRandom();
-        answer = board;
-//        for(int x = 0; x<9;x++) {
-//            for(int y = 0;y<9;y++) {
-//                answer[x][y] = board[x][y]; 
-//            }
-//        }
-//        solve();
+//        answer = board;
+        for(int x = 0; x<9;x++) {
+            System.arraycopy(board[x], 0, answer[x], 0, 9);
+        }
+        solve();
     }
     
     /**
@@ -123,6 +121,17 @@ public class Board {
      */
     public int hint(int row, int column) {
         return answer[row][column];
+    }
+    
+    public void clear() {
+        board = new int[9][9];
+        answer = new int[9][9];
+    }
+    public boolean checkIfFinished() {
+        if (Arrays.deepEquals(board, answer)){
+            return true;
+        }
+        return false;
     }
     
     @Override
