@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 import werkko.sudoku.Board;
 
 /**
- *
+ * Näppäimistön kuuntelija
  * @author joonaskylliainen
  */
 public class KeyboardEar implements KeyListener{
@@ -22,6 +22,11 @@ public class KeyboardEar implements KeyListener{
         this.b = b;
     }
 
+    /**
+     * Kun jotain numeroa painetaan katsotaan onko jokin kenttä aktivoitu. Jos on niin siihen asetetaan käyttäjän
+     * painama numero
+     * @param ke
+     */
     @Override
     public void keyTyped(KeyEvent ke) {
         if(b.isThereAnActiveField()) {
@@ -35,6 +40,11 @@ public class KeyboardEar implements KeyListener{
         }
     }
 
+    /**
+     * nuolinäppäimillä voi liikkua myös sudokukentässä. Koska aktiivista kenttää ei muuteta, vain deaktivoidaan
+     * sujuu numeroiden näppäileminen sutjakasti
+     * @param ke
+     */
     @Override
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_LEFT) {

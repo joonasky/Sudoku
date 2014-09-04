@@ -63,19 +63,19 @@ public class BoardTest {
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-//    @Test
-//    public void toimiikoGenerateBoard() {
-//        board.generateBoard();
-//        assertEquals(true, Arrays.deepEquals(board.getBoard(), board2.getBoard()));
-//    }
+
     @Test 
     public void toimiikoSolve() {
         board2.solve();
-        assertEquals(true, Arrays.deepEquals(board2.getAnswer(), board3.getBoard()));
+        assertFalse("solve ei toimi Board-luokassa", Arrays.deepEquals(board2.getAnswer(), board3.getBoard()));
+    }
+    @Test
+    public void toimiiikoCheckIfFinishedTrue() {
+        board2.solve();
+        assertFalse("ratkaisun tarkistus ei toimi", board2.checkIfFinished());      
+    }
+    @Test
+    public void toimiiikoCheckIfFinishedFalse() {
+        assertTrue("ratkaisun tarkistus ei toimi", board.checkIfFinished());      
     }
 }

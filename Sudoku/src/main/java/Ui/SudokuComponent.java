@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import werkko.sudoku.Board;
 
 /**
- *
+ * pelikenttäkomponentti.
  * @author joonaskylliainen
  */
 public class SudokuComponent extends JPanel{
@@ -53,14 +53,10 @@ public class SudokuComponent extends JPanel{
         }
         
         //piirtää numerot
-        //int i2 = 28;
         for (int i = 0; i<9; i++) {         
-            //int j2 = 34;
             for (int j = 0; j<9;j++) {              
                 g.drawString(cellToString(i,j), 28 + i*60, 34 + j*60);
-                //j2 += 60;
             }
-            //i2 += 60;
         }
         
         //värittää valitun kentän
@@ -69,16 +65,15 @@ public class SudokuComponent extends JPanel{
             int y = board.getActiveFieldy();
             g.setColor(Color.ORANGE);
             g.drawRect(x * 60 , y * 60, smallBoxLength, smallBoxLength);
-            
-            //g.drawString(cellToString(x,y), 28 + x*60, 34 + y*60);
             g.setColor(Color.black);
         }
-        
-        
-        
+
     }
     
-    public void paivita() {
+    /**
+     * maalaa komponentin uudestaan.
+     */
+    public void update() {
         repaint();
     }
     /**
@@ -96,5 +91,5 @@ public class SudokuComponent extends JPanel{
             return "";
         }
     }
-    
+
 }

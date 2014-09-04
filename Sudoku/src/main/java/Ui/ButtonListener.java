@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import werkko.sudoku.Board;
 
-/**
- *
+/** 
+ * Nappuloiden kuuntelija
  * @author joonaskylliainen
  */
 public class ButtonListener implements ActionListener{
@@ -22,6 +22,12 @@ public class ButtonListener implements ActionListener{
     private Random r2;
     private Component sc;
     
+    /**
+     * konstruktori
+     * @param b peli jota muutellaan
+     * @param num parametri sille mitä toimintaa kuuntelijalta halutaan
+     * @param sc sudokucomponent jota repaintataan
+     */
     public ButtonListener(Board b, int num, Component sc) {
         this.board = b;
         this.num = num;
@@ -34,6 +40,7 @@ public class ButtonListener implements ActionListener{
      * Jos buttonListenerilleo on annettu 0 parametrinä, toimii nappi taulun generoijana.
      * Jos 1 toimii se ratkaisijana
      * jos 2 toimii se vihjeenä
+     * jos 3 aloittaa se uuden pelin
      * @param ae
      */
     @Override

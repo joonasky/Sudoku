@@ -77,22 +77,34 @@ public class Board {
         return activeFieldy;
     }
 
+    /**
+     * isActive-muuttujan getteri.
+     * @return
+     */
     public boolean isThereAnActiveField() {
         return isActive;
     }
     
+    /**
+     * Aktivoi kentän, jotta tapahtumakuuntelijat tietävät mikä kenttä on aktiivinen.
+     * @param x kentän x-suuntainen komponentti
+     * @param y kentän y-suuntainen komponentti
+     */
     public void activate(int x, int y) {
         this.activeFieldx = x;
         this.activeFieldy = y;
         this.isActive = true;
     }
     
+    /**
+     *Deaktivoi kentän jotta tapahtumakuuntelijat eivät muuta sitä.
+     */
     public void deActivate() {
         this.isActive = false;
     }
 
     /**
-     * generoi uuden sudokupeliasetelman
+     * generoi uuden sudokupeliasetelman.
      */
     public void generateBoard() {
         BoardGenerator g = new BoardGenerator();
@@ -105,28 +117,39 @@ public class Board {
     }
     
     /**
-     * ratkaisee sudokun
+     * ratkaisee sudokun ja tallentaa ratkaisun answer-kenttään. Jos answer-kenttä on tyhjä,
+     * pelaaja ei ole generoinut uutta peliä ja haluaa, että hänen asettamansa sudokunsa ratkaistaan.
      */
     public void solve() {
         BoardSolver ratkaisija = new BoardSolver();
+        if(Arrays.deepEquals(answer,empty)){
+            answer = board;
+        }
         answer = ratkaisija.answer(answer);
         //board = answer;
     }    
     
     /**
      * antaa vihjeen
-     * @param row rivi
-     * @param column sarake
+     * @param row rivi, jolta vihje halutaan
+     * @param column sarake, jolta vihje halutaan
      * @return vihje
      */
     public int hint(int row, int column) {
         return answer[row][column];
     }
     
+    /**
+     * tyhjentää board-kentän ja answer-kentän eli alustaa uuden tyhjän pelin
+     */
     public void clear() {
         board = new int[9][9];
         answer = new int[9][9];
     }
+    /**
+     * tarkistaa vastaako board ja answer taulut toisiaan eli onko sudoku ratkaistu oikein.
+     * @return true jos ratkaisu on oikein. False jos väärin.
+     */
     public boolean checkIfFinished() {
         if (Arrays.deepEquals(board, answer)){
             return true;
@@ -138,11 +161,5 @@ public class Board {
     public String toString() {
         return Arrays.toString(board);
     }
-
-    public boolean equals(Board board2) {
-        if (Arrays.deepEquals(board2.getBoard(), board) ) {
-            return true;
-        }
-        return false;
-    }    
+   
 }

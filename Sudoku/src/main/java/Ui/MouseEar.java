@@ -12,7 +12,7 @@ import java.awt.event.MouseMotionListener;
 import werkko.sudoku.Board;
 
 /**
- *
+ * Hiirenkuuntelija
  * @author joonaskylliainen
  */
 public class MouseEar implements MouseListener, MouseMotionListener{
@@ -25,9 +25,12 @@ public class MouseEar implements MouseListener, MouseMotionListener{
         this.b = b;
     }
 
+    /**
+     * Kun jotain aluetta painetaan niin katsotaan millä alueella se oli ja aktivoidaan sen mukainen solu.
+     * @param me
+     */
     @Override
     public void mouseClicked(MouseEvent me) {
-        //System.out.println(me.getX() + " " + me.getY());
         b.activate((int)Math.ceil(me.getX() / 60), (int)Math.ceil(me.getY()) / 60);
         component.repaint();
     }
@@ -54,7 +57,7 @@ public class MouseEar implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseMoved(MouseEvent me) {
-        //System.out.println("mouse moved (" + me.getX() + ", " + me.getY() + ")");
+        
     }
     
 }
