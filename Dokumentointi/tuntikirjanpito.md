@@ -11,3 +11,10 @@
 **11.8.2014**; 4h: Uudistin luokkorakennetta vähän. Lisäsin Board-, BoardSolver-, ja BoardGenerator-luokat. 
 **12.8.2014**; 4h: Lisäsin testejä, sain ne toimimaan ja kehitin BoardGeneratoria.
 **13.8.2014**; 1h: Tein Luokkakaavion uudestaan
+
+**21.8.2014**; 8h: Aloitettu käyttöjärjestelmää
+
+**28..8.2014**;8h: Käyttöjärjestelmä valmis, vihje ei toimi.
+
+**4.8.2014**;4h: Kaikki osat toimivat, dokumentointi tehty, lisää toiminnallisuuttakin tehty.
+lopullinen palautus
